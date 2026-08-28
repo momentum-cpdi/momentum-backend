@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: momentum-postgres
+    environment:
+      POSTGRES_DB: momentum
+      POSTGRES_USER: momentum
+      POSTGRES_PASSWORD: momentum
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U momentum -d momentum"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+    container_name: momentum-backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/momentum
+      SPRING_DATASOURCE_USERNAME: momentum
+      SPRING_DATASOURCE_PASSWORD: momentum
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:
