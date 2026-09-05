@@ -1,6 +1,6 @@
-package com.momentum.backend.repository;
+package com.momentum.domain.repository;
 
-import com.momentum.backend.entity.Sport;
+import com.momentum.domain.entity.Sport;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

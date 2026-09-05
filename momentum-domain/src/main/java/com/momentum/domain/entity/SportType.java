@@ -1,4 +1,4 @@
-package com.momentum.backend.entity;
+package com.momentum.domain.entity;
 
 public enum SportType {
     FOOTBALL,

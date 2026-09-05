@@ -1,4 +1,4 @@
-package com.momentum.backend.entity;
+package com.momentum.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

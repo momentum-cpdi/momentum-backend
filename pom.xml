@@ -27,6 +27,7 @@
     </properties>
 
     <modules>
+        <module>momentum-domain</module>
         <module>momentum-backend</module>
     </modules>
 </project>

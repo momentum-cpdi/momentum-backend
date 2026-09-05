@@ -1,8 +1,8 @@
 package com.momentum.backend.service;
 
 import com.momentum.backend.dto.SportDto;
-import com.momentum.backend.entity.Sport;
-import com.momentum.backend.repository.SportRepository;
+import com.momentum.domain.entity.Sport;
+import com.momentum.domain.repository.SportRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

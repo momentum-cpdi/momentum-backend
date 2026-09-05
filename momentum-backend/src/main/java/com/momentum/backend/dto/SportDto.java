@@ -1,6 +1,6 @@
 package com.momentum.backend.dto;
 
-import com.momentum.backend.entity.SportType;
+import com.momentum.domain.entity.SportType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

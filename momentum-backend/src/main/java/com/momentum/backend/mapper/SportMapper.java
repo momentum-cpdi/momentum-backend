@@ -1,7 +1,7 @@
 package com.momentum.backend.mapper;
 
 import com.momentum.backend.dto.SportDto;
-import com.momentum.backend.entity.Sport;
+import com.momentum.domain.entity.Sport;
 import org.springframework.stereotype.Component;
 
 @Component
