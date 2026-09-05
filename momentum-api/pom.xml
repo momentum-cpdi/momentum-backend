@@ -11,9 +11,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>momentum-backend</artifactId>
-    <name>momentum-backend</name>
-    <description>Backend for the Momentum sports tracking and fantasy platform.</description>
+    <artifactId>momentum-api</artifactId>
+    <name>momentum-api</name>
+    <description>Web API for the Momentum sports tracking and fantasy platform.</description>
 
     <properties>
         <springdoc.version>2.6.0</springdoc.version>

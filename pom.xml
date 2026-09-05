@@ -28,7 +28,7 @@
 
     <modules>
         <module>momentum-domain</module>
-        <module>momentum-backend</module>
+        <module>momentum-api</module>
         <module>momentum-ingest-api</module>
     </modules>
 </project>
