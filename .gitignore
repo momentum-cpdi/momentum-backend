@@ -24,6 +24,9 @@ replay_pid*
 # Local configuration
 application.properties
 application-local.yml
+.env
+.env.*
+!.env.example
 
 # Maven wrapper
 .mvn/wrapper/maven-wrapper.jar
