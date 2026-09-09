@@ -2,7 +2,7 @@ FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-COPY target/momentum-backend-*.jar app.jar
+COPY target/momentum-api-*.jar app.jar
 
 EXPOSE 8080
 
