@@ -15,10 +15,6 @@
     <name>momentum-api</name>
     <description>Web API for the Momentum sports tracking and fantasy platform.</description>
 
-    <properties>
-        <springdoc.version>2.6.0</springdoc.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.momentum</groupId>
