@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:16-alpine
+    image: postgres:18.6-alpine3.24
     container_name: momentum-postgres
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -9,20 +9,15 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      - postgres_data:/var/lib/postgresql
 
   api:
     build:
       context: ./momentum-api
+      dockerfile: Dockerfile
     container_name: momentum-api
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
@@ -34,11 +29,10 @@ services:
   ingest:
     build:
       context: ./momentum-ingest-api
+      dockerfile: Dockerfile
     container_name: momentum-ingest-api
-    scale: 1
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
