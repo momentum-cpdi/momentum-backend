@@ -8,10 +8,6 @@ on:
 jobs:
   security:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      actions: read
-      security-events: write
     steps:
       - uses: actions/checkout@v7
 
@@ -25,11 +21,12 @@ jobs:
           severity: 'HIGH,CRITICAL'
           exit-code: '1'
 
-      - name: Upload SARIF
-        uses: github/codeql-action/upload-sarif@v4
+      - name: Upload Trivy report
+        uses: actions/upload-artifact@v4
         if: always() && hashFiles('trivy.sarif') != ''
         with:
-          sarif_file: 'trivy.sarif'
+          name: trivy-report
+          path: trivy.sarif
 
   build:
     runs-on: ubuntu-latest
@@ -52,10 +49,30 @@ jobs:
           docker build -t momentum-api:ci ./momentum-api
           docker build -t momentum-ingest-api:ci ./momentum-ingest-api
           
-      - name: Scan images
+      - name: Scan image API
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: 'image'
           image-ref: 'momentum-api:ci'
+          format: 'sarif'
+          output: 'trivy-api.sarif'
           severity: 'HIGH,CRITICAL'
           exit-code: 1
+
+      - name: Scan image INGEST-API
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: 'image'
+          image-ref: 'momentum-ingest-api:ci'
+          format: 'sarif'
+          output: 'trivy-ingest-api.sarif'
+          severity: 'HIGH,CRITICAL'
+          exit-code: 1
+
+      - name: Upload image reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trivy-image-reports
+          path: trivy-*.sarif
+          if-no-files-found: ignore
