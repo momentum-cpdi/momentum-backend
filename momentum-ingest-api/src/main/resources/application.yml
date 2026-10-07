@@ -17,6 +17,8 @@ server:
   port: 8081
 
 management:
+  server:
+    port: 9081
   endpoints:
     web:
       base-path: /
