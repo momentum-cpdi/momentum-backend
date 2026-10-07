@@ -1,0 +1,4 @@
+*
+!pom.xml
+!momentum-*/pom.xml
+!momentum-*/src
