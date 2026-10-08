@@ -21,6 +21,8 @@ public class SecurityConfig {
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
+                    "/health/**",
+                    "/prometheus",
                     "/actuator/health",
                     "/api/health",
                     "/swagger-ui/**",
