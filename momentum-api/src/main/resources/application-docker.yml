@@ -1,3 +1,8 @@
 spring:
   config:
     import: classpath:application-shared.yml
+
+logging:
+  structured:
+    format:
+      console: ecs
