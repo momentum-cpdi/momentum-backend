@@ -116,6 +116,15 @@ services:
     ports:
       - "3000:3000"
 
+  databasus:
+    image: databasus/databasus:latest
+    container_name: momentum-databasus
+    ports:
+      - "4005:4005"
+    volumes:
+      - ./databasus_data:/databasus-data
+    restart: unless-stopped
+
 volumes:
   postgres_data:
   prometheus_data:
@@ -123,3 +132,4 @@ volumes:
   alertmanager_data:
   loki_data:
   alloy_data:
+  databasus_data:
