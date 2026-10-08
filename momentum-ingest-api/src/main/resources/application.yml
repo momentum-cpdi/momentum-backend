@@ -17,10 +17,19 @@ server:
   port: 8081
 
 management:
+  server:
+    port: 9081
   endpoints:
     web:
+      base-path: /
       exposure:
-        include: health,info
+        include: health,info,prometheus
   endpoint:
     health:
       show-details: always
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+    tags:
+      application: ${spring.application.name}
