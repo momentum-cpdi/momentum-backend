@@ -1,0 +1,31 @@
+version: 2
+
+updates:
+  - package-ecosystem: "maven"
+    directories:
+      - "/"
+      - "/momentum-domain"
+      - "/momentum-api"
+      - "/momentum-ingest-api"
+    schedule:
+      interval: "daily"
+    groups:
+      maven-minor-patch:
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: "docker"
+    directories:
+      - "/momentum-api"
+      - "/momentum-ingest-api"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "docker-compose"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
